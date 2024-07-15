@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Agent - first mission</title>
+  <style>
+    * {
+      font: 9pt "Calibri";
+    }
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: white;
+    }
+    
+    div.monitor {
+      padding: 5px;
+      min-height: 85px;
+      color: black;
+    }
+    
+    #tabOut {
+      border-collapse: collapse;
+      border:solid 1px black;
+    }
+    #tabOut td {
+      font-size: 8pt;
+      padding: 2px;
+    }
+    #tabOut td.true {
+      background-color: lightgreen;
+    }
+    #tabOut td.false {
+      background-color: lightcoral;
+    }
+    #tabOut th {
+      font-size: 8pt;
+      background-color: gainsboro;
+      font-weight: bold;
+      padding: 2px;
+    }
+    
+    
+  </style>
+  
+  <script src="libraries/jquery-1.12.4.min.js"></script>
+  <script src="libraries/p5.js"></script>
+  <script src="libraries/p5.sound.js"></script>
+  
+</head>
+
+<body>
+  <script src="utils.js" type="text/javascript"></script>
+  <script src="p5_utils.js" type="text/javascript"></script>
+  <script src="geoutils.js" type="text/javascript"></script>
+  <script src="vectutils.js" type="text/javascript"></script>
+  <script src="poly2d.js" type="text/javascript"></script>
+
+  <script src="spring.js" type="text/javascript"></script>
+  <script src="spritesheet.js" type="text/javascript"></script>
+  <script src="sprite.js" type="text/javascript"></script>  
+  <script src="player.js" type="text/javascript"></script>
+
+  <script src="agent1.js" type="text/javascript"></script>
+  
+  <main>
+  </main>
+  
+  <div style="height:95px; overflow-y:auto;">
+    <span id="lblOut" style="padding-left:5px;"></span>
+    
+    <div id="divOut" class="monitor">      
+      
+      <table id="tabOut" cellspacing="0" cellpadding="1" border="1">
+        <tbody>
+          <tr>
+            <th>name</th><td id="m0-0">&nbsp;</td>
+            <th>animRef</th><td id="m0-1">&nbsp;</td>
+            <th>widthRef</th><td id="m0-2">&nbsp;</td>
+            <th>heightRef</th><td id="m0-3">&nbsp;</td>
+            <th>currAnim</th><td id="m0-4">&nbsp;</td>
+            <th>currFrame</th><td id="m0-5">&nbsp;</td>
+            <th>width</th><td id="m0-6">&nbsp;</td>
+            <th>height</th><td id="m0-7">&nbsp;</td>
+            <th>damping</th><td id="m0-8">&nbsp;</td>
+          </tr>
+          <tr>
+            <th>blocked</th><td id="m1-0">&nbsp;</td>
+            <th>inAnimation</th><td id="m1-1">&nbsp;</td>
+            <th>runningAnim</th><td id="m1-2">&nbsp;</td>
+            <th>moving</th><td id="m1-3">&nbsp;</td>
+            <th>falling</th><td id="m1-4">&nbsp;</td>
+            <th>flying</th><td id="m1-5">&nbsp;</td>
+            <th>jumping</th><td id="m1-6">&nbsp;</td>
+            <th>firing</th><td id="m1-7">&nbsp;</td>
+            <th>dying</th><td id="m1-8">&nbsp;</td>
+          </tr>
+          <tr>
+            <th>platform</th><td colspan="3" id="m2-0">&nbsp;</td>
+            <th>position</th><td colspan="3" id="m2-1">&nbsp;</td>
+            <th>prevPos</th><td colspan="3" id="m2-2">&nbsp;</td>
+            <th>actualPos</th><td colspan="3" id="m2-3">&nbsp;</td>
+            <th>direction</th><td id="m2-4">&nbsp;</td>
+          </tr>
+          <tr>
+            <th>boundBox</th><td colspan="3" id="m3-0">&nbsp;</td>
+            <th>velocity</th><td colspan="3" id="m3-1">&nbsp;</td>
+            <th>&nbsp;</th><td colspan="3" id="m3-2">&nbsp;</td>
+            <th>freePos</th><td colspan="3" id="m3-3">&nbsp;</td>
+            <th>&nbsp;</th><td id="m3-4">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+            
+    </div>
+    
+    <textarea id="txtOut" style="width:92%;height:84px;"></textarea>
+  </div>
+  
+  
+    
+  <script language="JavaScript" type="text/javascript">
+  
+    // scala viewport canvas
+    const CVS_SCALE = 1.0;  
+    // velocità di spinta pixel/sec (frecce sx/dx) e velocità massima di accelerazione
+    const KEY_VEL = 45;
+    // velocità di spinta del salto nelle componenti x e y (pixel/sec)
+    //const JUMP_XVEL = 5, JUMP_YVEL = 0.8;
+    // massima velocità (magnitudine)
+    const MAX_VEL = 1000;
+    
+    // forza di gravità (magnitudine verticale)
+    const GRAVITY = 18;
+    // attrito per il movimento in aria e sul suolo
+    const AIR_DAMPING = 0.98, GROUND_DAMPING = 0.75;
+    
+    // larghezza e altezza dei tile (in pixel)
+    const TILE_WIDTH = 20;
+    const TILE_HEIGHT = 18;
+
+    // costanti definizione dizionario effetti sonori
+    const SND_STEP = 0, SND_STEP2 = 1, SND_BEAM = 2, SND_AAH = 3, SND_DIED = 4;
+
+    
+    // indica se è stata già eseguita una prima inizializzazione del gioco
+    let _gameInitialized = false;
+    
+    
+    let _iMarkFrame = 0;
+    let _bStop = false;
+    
+        
+    $(function() {
+      
+      //$(document).on("keydown", function(e) {
+      //  console.log(e.which);
+      //});
+      
+    });
+    
+        
+      
+    function setup() {
+      'use strict';
+
+      frameRate(60);
+      //_cnv = createCanvas(window.innerWidth * 0.99, window.innerHeight * 0.85);
+      _cnv = createCanvas(800, 560);
+      
+      // ridimensiona lo spazio visibile del canvas
+      CVS_WIDTH = width / CVS_SCALE;
+      CVS_HEIGHT = height / CVS_SCALE;
+      //
+      TILE_X = 41;
+      TILE_Y = 31;
+
+      
+      //--------------------------------------------------
+
+      // gestore controlli azioni e movimento del personaggio principale
+      _player = new Player();
+
+      
+      //let mic = new p5.AudioIn();
+      //mic.start();
+      //getAudioContext().resume();
+            
+    } // setup
+
+
+    function preload() {
+      
+      // carica lo script dello spritesheet per il giocatore e a seguire l'immagine di base
+      _agent_json = loadJSON("json/impossible.json", "json", 
+        function(e) {
+          console.log(e);
+          //console.log(_agent_sheet.file);
+
+          _agent_img = loadImage(_agent_json.file, 
+            function(e) {
+              console.log(_agent_img);
+
+              // NOTA: non definisco qui l'oggetto SpriteSheet perchè alcuni metodi 
+              // di P5 vanno in errore in fase di preload
+            
+            },
+            function(e) {
+              console.log(e);    
+              console.error("Errore durante il caricamento dell'immagine: " + _agent_json.file + "! (_agent_json.file)");
+
+            }
+          ); // _agent_img = loadImage(...                
+        },
+        function(e) {
+          console.log(e); 
+          console.error("Errore durante il caricamento di _agent_json!");          
+
+        }); // _agent_sheet = loadJSON(...
+
+      
+      //
+      // precarica i suoni utilizzati dal gioco nel relativo array di descrittori
+      loadGameSounds(["sfx/imp_step1.mp3", "sfx/imp_step2.mp3", "sfx/imp_elev1c.mp3",
+                      "sfx/imp_aah.mp3", "sfx/imp_died.mp3"]);
+                  
+      
+    } // preload
+
+
+    function draw() {
+      // ottiene il delta time in secondi passati dall'ultimo frame
+      const elapsedTime = getDeltaTime();
+      //console.log(elapsedTime);
+            
+      // ridimensiona lo spazio visibile del canvas
+      //CVS_WIDTH = width / CVS_SCALE;
+      //CVS_HEIGHT = height / CVS_SCALE;
+      //
+      //TILE_X = int(CVS_WIDTH / TILE_WIDTH);
+      //TILE_Y = int(CVS_HEIGHT / TILE_HEIGHT);
+            
+      background("powderblue");
+      scale(CVS_SCALE);
+      noSmooth();      
+      
+      strokeCap(SQUARE);
+      stroke(0);
+      strokeWeight(1);
+      noFill();
+
+      
+      let sprRect = null, sprHitB = null;
+      let pnt0 = null;
+      let sAnim = "";
+      let x = 0, y = 0, iAngle = 0;
+      
+      
+      // applica il fattore di scale alle coordinate del mouse
+      //let vMouse = createVector(mouseX / CVS_SCALE, mouseY / CVS_SCALE);
+
+
+      //----------------------------------------------------------------------
+      // INIZIALIZZAZIONE AMBIENTE DI GIOCO
+      //----------------------------------------------------------------------
+      
+      
+      init_game();
+
+      
+      
+      
+      // NOTE: 
+      //
+      
+      
+      
+            
+
+      //----------------------------------------------------------------------
+      //--- AGGIORNAMENTO MOVIMENTO E ANIMAZIONE OGGETTI 
+      //--- (AGENDO SULL'ACCELERAZIONE) E RELATIVI CONTROLLI 
+      //----------------------------------------------------------------------                        
+            
+      //**** SPRITE AGENTE ****
+                  
+      // aggiorna controlli movimento da tastiera dell'agente
+      _player.update();
+      
+      // procede con il movimento dell'agente se sprite non bloccato
+      if(!_agent.blocked) {                 
+        // esclude i casi in cui il movimento va evitato anche se lo sprite è libero
+        if(!( _agent.searching || _agent.jumping )) {
+          
+          // implementa la routine di movimento e le animazioni in base al moto direzionale
+          _agent.updPlayMove( { x: KEY_VEL, y: 0 } );
+            // playCallback
+            //function(playAnim, playFrame) {
+            //  //console.log(playAnim + ": " + playFrame);
+            //},
+            // endCallback
+            //function(endAnim) {
+            //  //console.log(endAnim);
+            //}); // _agent.updPlayMove
+
+          // salva la direzione dell'ultimo movimento dello sprite (sx o dx)
+          saveDirection(_agent);        
+                    
+        } // if(!( agent.getSavedProp( ...
+                      
+        
+        //
+        // animazione di ricerca (inizio):
+        // ricorre quando viene rilevato un movimento verso l'alto e il flag searching è falso
+        if(_agent.player.all.moveUp && !_agent.searching) {
+          console.log("ricerca...");          
+          //debugger;
+          // salva lo stato dello sprite (in ricerca)
+          _agent.searching = true;
+                    
+          // aggiorna l'animazione di riferimento per mostrare il frame dell'agente 
+          // frontale al termine della ricerca
+          //sAnim = _agent.getIdleAnim(90);
+          //_agent.setAnimRef(sAnim, 0);
+          // aggiustamento per evitare che durante l'animazione dell'agente in ricerca l'altezza 
+          // di riferimento abbassi lo sprite in verticale (il frame di ricerca è più alto di quelli normali)
+          //_agent.heightRef = 55;
+          
+          //_agent.dirAngle = 90;
+          //_agent.direction.set(0, -1);
+          // recupera l'animazione dell'agente in ricerca
+          sAnim = _agent.getDirAnim(90);          
+          // riproduce l'animazione          
+          _agent.playAnimation(sAnim, undefined, undefined);
+          
+          
+          // [...]
+          
+                    
+        } // if(_agent.player.all.moveUp && !_agent.searching)
+        //  
+        // animazione di ricerca (fine):
+        // ricorre quando il flag searching è vero ma non viene rilevato un movimento verso l'alto
+        if(!_agent.player.all.moveUp && _agent.searching) {
+          console.log("...fine ricerca");
+              
+          // [...]
+          
+          _agent.searching = false;
+        } // if(!_agent.player.all.moveUp && _agent.searching)
+        
+        
+        //
+        // animazione agente abbassato
+        if(_agent.player.all.moveDown) {
+          console.log("si abbassa...");
+                    
+          // salva lo stato dello sprite (abbassato)
+          _agent.lowering = true;
+          // blocca lo sprite per evitare il ripetersi dell'animazione
+          _agent.blocked = true;
+          
+          // recupera l'animazione dell'agente che si china
+          sAnim = _agent.getExtraAnim(4, _agent.dirAngle);
+          // riproduce l'animazione
+          _agent.playAnimation(sAnim, undefined, 
+            // endCallback
+            function(endAnim) {
+              _agent.blocked = true;
+            });
+                           
+          // resetta i controlli rilevati da tastiera per attendere il prossimo frame
+          //_agent.player.resetControls();          
+          
+          //stopAfter(0);
+        } // if(_agent.player.all.moveDown)
+        
+        
+        // 
+        // animazione del salto!
+        if(_agent.player.pressButton1 && !_agent.jumping) {
+          // verifica che esista ancora un movimento direzionale valido (sx o dx o angoli intermedi)
+          // e presuppone che la proprietà direction sia stata definita da un precedente movimento
+          iAngle = _agent.dirAngle;
+          if(iAngle >= 0 && iAngle <= 180) { 
+            console.log("salta...");
+            // avvia l'azione di salto            
+            _agent.jumping = true;
+            // riduce l'attrito durante la fase di salto
+            _agent.damping = AIR_DAMPING;
+            
+            // estrae l'animazione di idle collegata alla direzione di movimento
+            sAnim = _agent.getIdleAnim(iAngle);
+            //sAnim = _agent.getExtraAnim(0, iAngle);
+            // la memorizza come animazione di riferimento per mostrarla all'uscita del salto
+            _agent.setAnimRef(sAnim, 0);
+            //_agent.setAnimRef(sAnim, 11);
+            //_agent.widthRef = 25;
+            //_agent.heightRef = 55;
+                        
+            // annulla la velocità per non sfalsare la lunghezza e l'altezza del salto
+            _agent.velocity.set(0, 0);
+            // estrae l'animazione di salto, in base alla direzione di movimento
+            sAnim = _agent.getExtraAnim(0, _agent.dirAngle);
+            //let nDur = millis();
+            
+            // esegue l'animazione del salto!            
+            _agent.playAnimation( sAnim, 
+              // playCallBack
+              function(playAnim, playFrame) {
+                //console.log("> " + playAnim + ": " + playFrame);
+              
+                // salto agente impossible mission: 180px orizz. x 73px vert. max (approssimati)
+                // frame di animazione: 12, spostamento orizz.: 180/12 = 15px per frame
+                _agent.position.x += (_agent.direction.x * 15);
+              
+                // spostamento verticale a campana, 73/6 = 12,17px
+                // da frame 0 a 5: y -= 12px, dopo y += 12px 
+                // => non so perchè ma 4px dà un salto migliore, quindi: 6*4 = 24px altezza max
+                if(playFrame < 6)
+                  _agent.position.y -= 4;
+                else
+                  _agent.position.y += 4;
+                              
+              },
+              // endCallBack
+              function(endAnim) {
+                // questo callback viene lanciato dopo una a chiamata a stopAnimation,
+                // quindi qui lo sprite si è sicuramente fermato
+                //console.log("- " + endAnim);
+                console.log("...fine salto");
+                //nDur = millis() - nDur;
+                //console.log(nDur + " millisecondi");
+              
+                // dichiara conclusa la fase di salto
+                _agent.jumping = false;
+                // riapplica allo sprite l'attrito del suolo
+                _agent.damping = GROUND_DAMPING;
+                                                                          
+                // manda in riproduzione l'animazione di riferimento
+                //console.log("play: " + this.animRef);
+                //_agent.playAnimation(_agent.animRef, 
+                //  // playCallBack
+                //  function(playAnim, playFrame) {
+                //    //console.log("> " + playAnim + ": " + playFrame);              
+                //  }, 
+                //  // endCallBack
+                //  function(endAnim) { 
+                //    //console.log("- " + endAnim);
+                //  
+                //  }); // this.playAnimation(sAnim ...
+                            
+              }); // playAnimation
+                                          
+          } // if(iAngle > -1)
+        } // if(_agent.player.all.moveUp && !_agent.jumping)
+        
+        
+        //
+        // animazione di fuoco (spinta gravitazionale)
+        if(_agent.player.pressButton2 && !_agent.firing) {
+          console.log("beam...");                    
+          // salva lo stato dello sprite
+          _agent.firing = true;
+          // blocca lo sprite fino al termine dell'animazione
+          _agent.blocked = true;
+                           
+          // definizione raggio di spinta
+          // velocità: 1000px/sec, ovvero 1px/ms
+          _agent.setSavedProp("fireAnim", {
+            waitTimeout: 360,
+            beam: new Rect(_agent.actualPos.x, _agent.actualPos.y, 1, _agent.height),
+            maxWidth: 180,
+            velocity: 1
+          });
+                    
+          // recupera l'animazione dell'agente che muove il braccio per sparare il raggio
+          sAnim = _agent.getExtraAnim(3, _agent.dirAngle);
+          // riproduce l'animazione
+          _agent.playAnimation(sAnim, undefined,
+            // endCallBack
+            function(endAnim) {            
+              console.log("...fine beam");
+            
+              _agent.firing = false;
+              _agent.setSavedProp("fireAnim", undefined);              
+              _agent.blocked = false;
+            
+            }); // _agent.playAnimation
+          
+        } // if(_agent.player.pressButton2 && !_agent.firing)
+        
+        
+        
+        
+      } // if(!_agent.blocked)
+      else {        
+      // azioni possibili in stato di blocco sprite
+                
+        //
+        // il giocatore attiva l'animazione di agente alzato (dopo averlo abbassato)
+        if(_agent.lowering && (_agent.player.all.moveUp || 
+                               _agent.player.all.moveLeft || 
+                               _agent.player.all.moveRight)) {  
+          console.log("si rialza...");
+          // recupera le proprietà di direzione
+          loadDirection(_agent);
+
+          // sblocca lo sprite
+          _agent.blocked = false;
+          _agent.lowering = false;
+
+          // recupera l'animazione di idle rivolta verso la direzione recuperata
+          // e la imposta come animazione di riferimento
+          sAnim = _agent.getIdleAnim(_agent.dirAngle);
+          _agent.setAnimRef(sAnim);
+          // recupera l'animazione di agente rialzato, sempre nella stessa direzione
+          sAnim = _agent.getExtraAnim(5, _agent.dirAngle);
+          // esegue l'animazione
+          _agent.playAnimation(sAnim, undefined, 
+            // endCallback
+            function(endAnim) {
+              _agent.blocked = false;
+            });
+
+        } // if(_sprite.blocked && _agent.player.moveUp)
+
+
+        //
+        // l'agente è in fase di salto
+        if(_agent.jumping && _agent.runningAnim) {
+          console.log("...in salto...");
+          //_agent.applyForce(
+          //  createVector(_agent.direction.x * JUMP_XVEL, -1 * JUMP_YVEL));
+          
+          /*
+          let vPos = createVector(0, 0);
+          
+          // salto agente impossible mission: 180px orizz. x 73px vert. max (approssimati)
+          // frame di animazione: 12, spostamento orizz.: 180/12 = 15px per frame
+          //
+          // salto = 12 fotogrammi x 50 ms a fotogramma = 600ms per animazione teorici
+          // S = 180px ; t = 710 ms di media per eseguire il salto (non so perchè non siano 600ms)
+          // V = S/T  =>  180 / 710 = 0,2535211267605634 px/ms * 1000 = 253,5211267605634 px/sec
+          // teorici: 180/600 = 0,3 px/ms * 1000 = 300 px/sec
+          //vPos.x = (_agent.direction.x * 253.521127) * elapsedTime;
+          vPos.x = (_agent.direction.x * 251) * elapsedTime;
+          
+          // altezza max per salto corretto: 24px fino al sesto fotogramma, poi a decrescere fino al 12mo
+          // 710ms / 2 = 355ms in fase ascendente e 355ms in fase discendente
+          // V = 24 / 355  = 0,0676056338028169 px/ms * 1000 = 67,6056338028169 px/sec
+          // teorici: 24 / 300 = 0,08 px/ms * 1000 = 80 px/sec
+          if(_agent.currFrame < 6)
+            //vPos.y = (-1 * 67.605634) * elapsedTime;
+            vPos.y = (-1 * 67) * elapsedTime;
+          else
+            //vPos.y = 67.605634 * elapsedTime;
+            vPos.y = 67 * elapsedTime;
+          
+          _agent.position.add(vPos);
+          */
+          
+        } // if(_agent.blocked && _agent.jumping && _agent.runningAnim)
+
+        
+        // 
+        // l'agente spara il raggio di spinta
+        if(_agent.firing && _agent.getSavedProp("fireAnim")) {
+          let fireAnim = _agent.getSavedProp("fireAnim");
+          if(fireAnim.waitTimeout <= 0) {            
+            if(fireAnim.beam.width < fireAnim.maxWidth) {
+              playGameSound(SND_BEAM);
+              
+              // velocità: pix/ms * ms trascorsi dal prec. frame = n. pix da aggiungere alla larghezza del raggio
+              fireAnim.beam.width += (fireAnim.velocity * deltaTime);
+
+              let p0 = null;
+              if(_agent.direction.x < 0) {
+                p0 = _agent.boundBox.startPoint();
+                p0.x -= fireAnim.beam.width;
+              } 
+              else {
+                p0 = _agent.boundBox.startRPoint();
+                p0.x++;
+              } // if(_agent.direction.x < 0)
+              
+              fireAnim.beam.position.x = p0.x;
+              fireAnim.beam.position.y = _agent.actualPos.y;
+              fireAnim.beam.height = _agent.height;
+              fireAnim.beam.updateCenter();              
+              _agent.setSavedProp("fireAnim", fireAnim);
+                            
+            } // if(fireAnim.beam.width < fireAnim.maxWidth)
+                          
+          } // if(fireAnim.waitTimeout === 0)
+          else {
+            fireAnim.waitTimeout -= deltaTime;
+          }             
+        } // if(_agent.firing)
+        
+        
+                
+      } // if(!_agent.blocked)
+      
+      
+      
+      //--------------------------------------------------------------------------------------
+      //--- CONTROLLI SU CONDIZIONI AMBIENTALI E AZIONI DEI NEMICI NEL CAMPO DI GIOCO
+      //--------------------------------------------------------------------------------------
+              
+      //**** SPRITE AGENTE ****
+                        
+      //
+      // controllo di caduta e atterraggio:
+      // considera condizioni particolari che possono eludere la gravità
+      const bApplyGravity = !(_agent.jumping || _agent.died || _agent.anyOtherSpecialPower);
+      
+      if(bApplyGravity) {
+        //
+        // se l'agente sta cadendo oppure non ha una piattaforma sotto i piedi sebbene sia fermo
+        // (per motivi di approssimazione del movimento) attiva la situazione di caduta e 
+        // l'animazione apposita, che blocca anche i movimenti    
+        if(_agent.falling || !_agent.platform) {
+          console.log("cade...");
+          if(!_agent.dirAngle) _agent.dirAngle = 0;
+
+          // aggiunge un vettore di gravità all'accelerazione dello sprite
+          //_agent.applyForce(createVector(0, GRAVITY));
+          _agent.acceleration.add(createVector(0, GRAVITY));
+          // riduce l'attrito con l'aria che è inferiore rispetto a quello con il suolo
+          _agent.damping = AIR_DAMPING;
+
+          // recupera l'animazione della caduta nella plausibile 
+          // ultima posizione di movimento dell'agente
+          //sAnim = _agent.getExtraAnim(2, _agent.dirAngle);
+          //
+          // NOTA: in realtà recupera l'animazione del salto per visualizzare l'ultimo frame freezato
+          sAnim = _agent.getExtraAnim(0, _agent.dirAngle);
+          if(sAnim) {
+                      
+            // l'animazione della caduta blocca i movimenti e non ha frame di uscita
+            //_agent.playAnimation(sAnim);
+            //
+            // mette in pausa l'animazione per evitare l'animazione di caduta
+            //_agent.pauseAnimation();
+            _agent.setStaticFrame(sAnim, 11);
+            _agent.inAnimation = true;
+            _agent.runningAnim = false;
+            
+          } // if(sAnim)
+          else {            
+            _agent.pauseAnimation();            
+          } // if(sAnim)
+          
+          _agent.blocked = true;
+          // registra che lo sprite è in animazione da caduta
+          _agent.setSavedProp("animFalling", true);
+          
+        } // if(_agent.falling)
+        else {
+
+          // verifica se lo sprite è atterrato proprio ora 
+          // (cioè se non è stato rilevato in caduta ma tuttavia verifica il flag di animazione relativo)
+          if(_agent.getSavedProp("animFalling")) {
+            console.log("...atterra");
+            // riproduce il suono dell'agente che atterra
+            playGameSound(SND_STEP2);
+            
+            // estrae l'animazione di idle rispetto alla direzione corrente
+            if(!_agent.dirAngle) _agent.dirAngle = 0;
+            sAnim = _agent.getIdleAnim(_agent.dirAngle);
+
+            // sblocca i controlli
+            _agent.blocked = false;
+            // ripristina l'animazione di idle
+            _agent.setSavedProp("animFalling", false);
+            _agent.playAnimation(sAnim);
+
+          } // if(_agent._savedProps.animFalling)
+
+          // applica allo sprite l'attrito del suolo
+          _agent.damping = GROUND_DAMPING;
+
+        } // if(_agent.falling)
+        //        
+      } // if(bApplyGravity)
+      
+      
+      //
+      // controllo condizione di morte dell'agente
+      if(_agent.died) {
+        // inibisce i movimenti dell'agente
+        _agent.blocked = true;
+        
+        
+        // fine gioco
+        console.log("GAME OVER!");
+        // [...]
+        
+        noLoop();
+        
+        
+      } // if(_agent.died)
+      
+      
+                      
+      //----------------------------------------------------------------------
+      //--- AGGIORNAMENTO ANIMAZIONI E FRAME DEGLI SPRITE
+      //----------------------------------------------------------------------
+      
+      //**** SPRITE AGENTE ****
+           
+      _agent.updateFrame();
+           
+                 
+      
+      //----------------------------------------------------------------------
+      //--- AGGIORNAMENTO VELOCITA' E POSIZIONE SPRITE
+      //----------------------------------------------------------------------
+      
+      //**** SPRITE AGENTE ****
+        
+      _agent.updatePosition( elapsedTime );
+      
+      
+      // provvede ad eliminare l'ultima posizione libera da conflitti dello sprite 
+      // se per effetto del cambio di coordinate di posizione o di offset del frame corrente
+      // questa finisce inclusa nel rettangolo del frame corrente; questo per evitare riposizionamenti 
+      // anomali dello sprite in caso di conflitti (se la posizione libera è interna allo sprite il vettore
+      // inverso di uscita potrebbe spostare lo sprite nella parte opposta rispetto a quella da cui proviene)
+      if(_agent.freePos && _agent.boundBox.containsPoint( _agent.freePos ))
+        _agent.freePos = undefined;
+      
+            
+      
+      
+      //-------------------------------------------------------------------------------------------
+      //--- CONTROLLI DI COLLISIONE SPRITE E RISOLUZIONE CONFLITTI DI SOVRAPPOSIZIONE OGGETTI
+      //-------------------------------------------------------------------------------------------
+      
+      //**** SPRITE AGENTE ****
+        
+      // controllo di collisione dell'agente con le piattaforme e risoluzione conflitti di posizionamento
+      let platColl = platfSpriteCollisionCheck(_agent, true);
+                      
+      // controllo se l'agente è su una piattaforma o meno, 
+      // in caso contrario imposta lo stato di caduta
+      _agent.platform = getPlatform(_agent);
+      // se la piattaforma non viene trovata l'agente sta precipitando
+      // (ma solo se lo sprite è in movimento)
+      _agent.falling = ((_agent.platform === undefined) && _agent.moving);
+      
+      // analogamente a quanto fa il metodo updatePosition della classe Sprite
+      // verifica che lo stato di "falling" non sia in realtà un volo (es: se c'è un salto)
+      _agent.flying = false;
+      if(_agent.falling) {
+      
+        // estrae un prodotto scalare del versore di velocità, confrontato con un versore gravitazionale
+        y = _agent.velocity.copy().normalize()
+                           .dot( createVector(0, 1) );
+        y = round(y);
+        
+        // se il prodotto scalare vale -1 vuol dire che i due vettori sono opposti, quindi il moto si 
+        // oppone alla gravità: di conseguenza lo sprite sta in realtà volando e non cadendo
+        _agent.flying = (y < 0.0);
+        // se l'agente vola è chiaro che non cada: posso impostare questa verità perchè siamo entrati
+        // in questa if pensando che lo sprite cadesse
+        _agent.falling = !_agent.flying;
+        
+      } // if(_agent.falling)
+      
+      
+      
+      //----------------------------------------------------------------------
+      //--- CONTROLLI DI CONFINAMENTO SPRITE NELL'AREA DI GIOCO
+      //----------------------------------------------------------------------  
+      
+      //**** SPRITE AGENTE ****
+
+      // 
+      // controllo uscita orizzontale dallo schermo
+      if(_agent.position.x < -_agent.width) {
+        console.log("uscito a sx...");
+        
+        noLoop();
+        
+      } // if(_agent.position.x < -_agent.width * 1.2)
+      if(_agent.position.x > CVS_WIDTH) {
+        console.log("uscito a dx...");
+        
+        noLoop();
+        
+      }
+      
+      //
+      // controllo caduta agente fuori dallo schermo
+      if(_agent.position.y > CVS_HEIGHT && !_agent.dying) {
+        // riproduce suono dell'urlo e poi imposta il flag di morte
+        _agent.dying = true;
+        
+        playGameSound(SND_AAH);
+        
+        setTimeout(function() {
+          _agent.died = true;
+        }, 4000);
+        
+      } // if(_agent.position.y > CVS_HEIGHT)
+      
+      
+      
+      
+      
+      //----------------------------------------------------------------------
+      //--- DISEGNO OGGETTI A SCHERMO
+      //----------------------------------------------------------------------
+      
+      push();      
+      //drawGrid();   
+
+            
+      //  
+      // tile map piattaforme
+      drawTileMap();      
+      //drawPlat();
+      
+      //
+      // sprite agente
+      _agent.draw();      
+      //
+      // sprite agente: disegno raggio di spinta 
+      if(_agent.firing && _agent.getSavedProp("fireAnim")) {
+        let fireAnim = _agent.getSavedProp("fireAnim");
+        if(fireAnim.waitTimeout <= 0) {          
+          //stroke("gray");
+          //fireAnim.beam.draw();
+
+          // orientamento sprite verso sx (o dx)
+          const bSx = (_agent.direction.x < 0);
+          const p0 = (bSx ? _agent.boundBox.startPoint() : _agent.boundBox.startRPoint());
+
+          for(x=0; x < fireAnim.beam.width; x+=10) {
+            stroke(240); strokeWeight(3); fill(color(255, 128));
+            if(x >= fireAnim.beam.width - 20) stroke(250);
+            if(x >= fireAnim.beam.width - 10) stroke(255);
+            if(bSx) {                
+              arc(p0.x - x, _agent.boundBox.posCenter.y, 
+                  _agent.width, fireAnim.beam.height, HALF_PI, HALF_PI + PI);                
+            } // if(bSx)
+            else {
+              arc(p0.x + x, _agent.boundBox.posCenter.y, 
+                  _agent.width, fireAnim.beam.height, HALF_PI + PI, HALF_PI);
+            } // if(bSx)
+          } // for(x=0; x < fireAnim.beam.with; x+=10)                     
+                              
+        } // if(fireAnim.waitTimeout <= 0)        
+      } // if(_agent.firing && _agent.getSavedProp("fireAnim")
+            
+
+      
+      //console.log(_player.getMoveAngle());
+            
+      // monitor in basso (debug)
+      updateMon();
+      
+      // info text frame rate
+      textSize(9);
+      noStroke();
+      textAlign(LEFT, BASELINE);
+      //fill("dimgray");
+      fill("white");
+      text(int(frameRate()) + " fps; " + elapsedTime + " secs", 2, 2, 100, 50);
+      
+      pop();
+        
+      // debug
+      //if(frameCount == 1) noLoop();
+      if(_bStop) noLoop();
+      
+      checkStop();
+    } // draw
+                      
+    
+    
+    function init_game() {
+    
+      // routine da eseguirsi alla prima inizializzazione del gioco
+      if(!_gameInitialized) {
+        
+        //for(let i=0; i < _game_sounds.length; i++) {
+        //  _game_sounds[i].sound.stop();
+        //} // for(let i=0; i < _game_sounds.length; i++)
+        
+        
+        
+      } // if(!_gameInitialized)
+      
+      //
+      // carica la tile map
+      if(_tileMap == null) {
+        
+        loadTileMap(0);
+        // costruisce la lista dei rettangoli di piattaforma
+        buildPlatLst();
+        
+      } // if(_tileMap == null)
+      
+      //
+      // carica lo spritesheet dell'agente
+      if(_agent_sheet == null) {
+                
+        // crea uno spritesheet a partire dall'immagine e dallo script caricato
+        _agent_sheet = new SpriteSheet();
+        _agent_sheet.createSheet(_agent_json, _agent_img, _game_sounds);
+
+        // genera uno sprite a partire dallo spritesheet
+        _agent = _agent_sheet.createSprite();
+        _agent.name = "Agent42";
+        _agent.widthRef = 25;
+        _agent.heightRef = 55;
+        _agent.damping = GROUND_DAMPING;
+        //_agent.maxSpeed = MAX_VEL;
+        // associa lo sprite del personaggio al gestore di movimento
+        _agent.player = _player;
+        // inibisce il movimento verso il basso e verso l'alto, di fatto impossibili
+        _agent.player.setAvailCtrlStat(
+          (Player.eMoveActionCmds.eMoveUp | Player.eMoveActionCmds.eMoveDown), false);
+        
+        // associa le animazioni idle, di direzione e di salto (angoli di direzione, da 0° a 360°)
+        //                         E        NE       N        NO       O        SO       S        SE
+        _agent.setIdleAnim(    ["ag00R", "ag00R", "ag00D", "ag00L", "ag00L", "ag00L", "ag00R", "ag00R"]);
+        _agent.setDirAnim(     ["ag01R", "ag01R", "ag00U", "ag01L", "ag01L", "ag01L", "ag06R", "ag01R"]);
+        // associa animazione di salto
+        _agent.setExtraAnim(0, ["ag02R", "ag02R", "ag02R", "ag02L", "ag02L", "ag02L", "ag02L", "ag02R"]);
+        // associa animazioni di urto, caduta e fuoco
+        _agent.setExtraAnim(1, ["ag04R", "ag04R", "ag04R", "ag04L", "ag04L", "ag04L", "ag04L", "ag04R"]);
+        _agent.setExtraAnim(2, ["ag05R", "ag05R", "ag05R", "ag05L", "ag05L", "ag05L", "ag05L", "ag05R"]);
+        _agent.setExtraAnim(3, ["ag08R", "ag08R", "ag08R", "ag08L", "ag08L", "ag08L", "ag08L", "ag08R"]);
+        // animazione di agente chinato da posizione eretta
+        _agent.setExtraAnim(4, ["ag06R", "ag06R", "ag06R", "ag06L", "ag06L", "ag06L", "ag06L", "ag06R"]);
+        // animazione di agente rialzato da posizione chinata
+        _agent.setExtraAnim(5, ["ag07R", "ag07R", "ag07R", "ag07L", "ag07L", "ag07L", "ag07L", "ag07R"]);
+                
+        _agent.setAnimRef("ag00R");
+        _agent.setStaticFrame("ag00R", 0);
+        //_agent.setPosition(150, 52);
+        _agent.setPosition(20, 52);
+        _agent.freePos = _agent.position.copy();
+        
+        _agent.setDirection(1, 0);
+        //_agent.gravity = createVector(0, 18);        
+        
+        _agent.updateFrame();
+        
+        
+        // libera la memoria dell'immagine e dallo script che ora non servono più
+        _agent_json = null;
+        _agent_img = null;
+        
+      } // if(_agent_sheet == null)
+      
+      
+      
+            
+      _gameInitialized = true;
+    } // init_game
+    
+    
+    
+        
+
+    
+    function windowResized() {      
+      //resizeCanvas(window.innerWidth * 0.99, window.innerHeight * 0.85);
+      
+      // ridimensiona lo spazio visibile del canvas
+      //CVS_WIDTH = width / CVS_SCALE;
+      //CVS_HEIGHT = height / CVS_SCALE;
+      //
+      //TILE_X = int(CVS_WIDTH / TILE_WIDTH);
+      //TILE_Y = int(CVS_HEIGHT / TILE_HEIGHT);
+      
+    } // windowResized
+    
+    
+    function mousePressed() {  
+      //console.log("mousePressed");
+
+      let vMouse = createVector(mouseX / CVS_SCALE, mouseY / CVS_SCALE);
+      const vPoint = new Point2D(vMouse.x, vMouse.y);
+      
+      for(let i=0; i < _aPlat.length; i++) { 
+        const platF = _aPlat[i];
+        if(platF.containsPoint(vPoint)) {
+          const endP = platF.endPoint();
+          console.log("_aPlat[" + i + "] => (" + 
+                     platF.position.x + "," + platF.position.y + ") - (" +
+                     endP.x + "," + endP.y + ") [" + platF.width + "x" + platF.height + "]");
+        }
+      } // for(const platF of _aPlat)
+      
+      
+    } // mousePressed
+
+    
+    function mouseClicked() {
+
+      // sblocca le policy di sicurezza di Chrome che impediscono la riproduzione di suoni 
+      // senza un'interazione continuata da parte dell'utente
+      if (getAudioContext().state !== 'running')
+        getAudioContext().resume();
+      
+      
+      // prevent default
+      return false;
+    } // mouseClicked
+
+
+    function doubleClicked() {
+
+      // prevent default
+      return false;
+    } // doubleClicked
+    
+
+    
+    function touchStarted() {
+      //console.log("touchStarted");
+      
+      // sblocca le policy di sicurezza di Chrome che impediscono la riproduzione di suoni 
+      // senza un'interazione continuata da parte dell'utente
+      if (getAudioContext().state !== 'running')
+        getAudioContext().resume();
+      
+      // prevent default
+      return false;
+    } // touchStarted   
+
+    
+    
+    /////////////////////////////////////////////////////////////
+
+    
+    function updateMon() {
+      let div = $("#divOut"), lbl = $("#lblOut");
+      //let tab = $("#tabOut");
+      let sOut = "";
+
+      sOut += 
+        `Cvs: ${int(CVS_WIDTH)} x ${int(CVS_HEIGHT)} ; ` +
+        `Tile: ${TILE_X} x ${TILE_Y} ` +
+        `(${TILE_WIDTH}x${TILE_HEIGHT}px)<br/>`;
+                
+      lbl.html(sOut);
+      
+      if(frameCount % 4 == 0) {
+        dumpSprite(_agent);        
+      }
+      
+    } // update_mon
+
+    
+    function _dumpSprite( sprite, table ) {
+      let tbody = table.find("tbody");
+      tbody.html("");
+      
+      let tr = $("<tr></tr>").appendTo(tbody);      
+      tr.append($("<th></th>").html("name"));
+      tr.append($("<td></td>").html(sprite.name));
+      //tr.append($("<th></th>").html("id"));
+      //tr.append($("<td></td>").html(sprite.id));
+      tr.append($("<th></th>").html("animRef"));
+      tr.append($("<td></td>").html(sprite.animRef));
+      tr.append($("<th></th>").html("widthRef"));
+      tr.append($("<td></td>").html(sprite.widthRef));
+      tr.append($("<th></th>").html("heightRef"));
+      tr.append($("<td></td>").html(sprite.heightRef));
+      tr.append($("<th></th>").html("currAnim"));
+      tr.append($("<td></td>").html(sprite.currAnim));
+      tr.append($("<th></th>").html("currFrame"));
+      tr.append($("<td></td>").html(sprite.currFrame));
+      tr.append($("<th></th>").html("width"));
+      tr.append($("<td></td>").html(sprite.width));
+      tr.append($("<th></th>").html("height"));
+      tr.append($("<td></td>").html(sprite.height));
+      tr.append($("<th></th>").html("damping"));
+      tr.append($("<td></td>").html(sprite.damping));
+      
+      tr = $("<tr></tr>").appendTo(tbody);
+      tr.append($("<th></th>").html("blocked"));
+      tr.append($(`<td class='${sprite.blocked}'></td>`).html(sprite.blocked + ""));
+      tr.append($("<th></th>").html("inAnimation"));
+      tr.append($(`<td class='${sprite.inAnimation}'></td>`).html(sprite.inAnimation + ""));
+      tr.append($("<th></th>").html("runningAnim"));
+      tr.append($(`<td class='${sprite.runningAnim}'></td>`).html(sprite.runningAnim + ""));
+      tr.append($("<th></th>").html("moving"));
+      tr.append($(`<td class='${sprite.moving}'></td>`).html(sprite.moving + ""));
+      tr.append($("<th></th>").html("falling"));
+      tr.append($(`<td class='${sprite.falling}'></td>`).html(sprite.falling + ""));
+      tr.append($("<th></th>").html("flying"));
+      tr.append($(`<td class='${sprite.flying}'></td>`).html(sprite.flying + ""));
+      tr.append($("<th></th>").html("jumping"));
+      tr.append($(`<td class='${sprite.jumping}'></td>`).html(sprite.jumping + ""));
+      tr.append($("<th></th>").html("firing"));
+      tr.append($(`<td class='${sprite.firing}'></td>`).html(sprite.firing + ""));
+      tr.append($("<th></th>").html("dying"));
+      tr.append($(`<td class='${sprite.dying}'></td>`).html(sprite.dying + ""));
+      //tr.append($("<th></th>").html("&nbsp;"));
+      //tr.append($("<td></td>").html("&nbsp;"));
+      
+      tr = $("<tr></tr>").appendTo(tbody);
+      tr.append($("<th></th>").html("platform"));
+      tr.append($("<td colspan='3'></td>").html(recStr(sprite.platform) + ""));
+      tr.append($("<th></th>").html("position"));
+      tr.append($("<td colspan='3'></td>").html(vectStr(sprite.position)));
+      tr.append($("<th></th>").html("prevPos"));
+      tr.append($("<td colspan='3'></td>").html(vectStr(sprite.prevPos)));
+      tr.append($("<th></th>").html("actualPos"));
+      tr.append($("<td colspan='3'></td>").html(vectStr(sprite.actualPos)));
+      //tr.append($("<th></th>").html("died"));
+      //tr.append($(`<td class='${sprite.died}'></td>`).html(sprite.died + ""));
+      tr.append($("<th></th>").html("direction"));
+      tr.append($("<td></td>").html(vectStr(sprite.direction)));
+      
+      tr = $("<tr></tr>").appendTo(tbody);
+      tr.append($("<th></th>").html("boundBox"));
+      tr.append($("<td colspan='3'></td>").html(recStr(sprite.boundBox, false)));
+      tr.append($("<th></th>").html("velocity"));
+      tr.append($("<td colspan='3'></td>").html(vectStr(sprite.velocity)));
+      tr.append($("<th></th>").html("&nbsp;"));
+      tr.append($("<td colspan='3'></td>").html("&nbsp;"));
+      tr.append($("<th></th>").html("freePos"));
+      tr.append($("<td colspan='3'></td>").html(vectStr(sprite.freePos)));
+      tr.append($("<th></th>").html("&nbsp;"));
+      tr.append($("<td></td>").html("&nbsp;"));
+                            
+    } // _dumpSprite
+    
+    function dumpSprite( sprite ) {
+      let el = null;
+      
+      $get("m0-0").innerHTML = sprite.name ? sprite.name : "&nbsp;";
+      //tr.append($("<th></th>").html("id"));
+      //tr.append($("<td></td>").html(sprite.id));
+      $get("m0-1").innerHTML = sprite.animRef ? sprite.animRef : "&nbsp;";
+      $get("m0-2").innerHTML = sprite.widthRef ? sprite.widthRef : "&nbsp;";
+      $get("m0-3").innerHTML = sprite.heightRef ? sprite.heightRef : "&nbsp;";
+      $get("m0-4").innerHTML = sprite.currAnim ? sprite.currAnim : "&nbsp;";
+      $get("m0-5").innerHTML = sprite.currFrame ? sprite.currFrame : "&nbsp;";
+      $get("m0-6").innerHTML = sprite.width ? sprite.width : "&nbsp;";
+      $get("m0-7").innerHTML = sprite.height ? sprite.height : "&nbsp;";
+      $get("m0-8").innerHTML = sprite.damping ? sprite.damping : "&nbsp;";
+      
+      el = $get("m1-0");
+      el.className = sprite.blocked;
+      el.innerHTML = sprite.blocked ? sprite.blocked : "false";
+      el = $get("m1-1");
+      el.className = sprite.inAnimation ? sprite.inAnimation : "false";
+      el.innerHTML = sprite.inAnimation ? sprite.inAnimation : "false";
+      el = $get("m1-2");
+      el.className = sprite.runningAnim ? sprite.runningAnim : "false";
+      el.innerHTML = sprite.runningAnim ? sprite.runningAnim : "false";
+      el = $get("m1-3");
+      el.className = sprite.moving ? sprite.moving : "false";
+      el.innerHTML = sprite.moving ? sprite.moving : "false";
+      el = $get("m1-4");
+      el.className = sprite.falling ? sprite.falling : "false";
+      el.innerHTML = sprite.falling ? sprite.falling : "false";
+      el = $get("m1-5");
+      el.className = sprite.flying ? sprite.flying : "false";
+      el.innerHTML = sprite.flying ? sprite.flying : "false";
+      el = $get("m1-6");
+      el.className = sprite.jumping ? sprite.jumping : "false";
+      el.innerHTML = sprite.jumping ? sprite.jumping : "false";
+      el = $get("m1-7");
+      el.className = sprite.firing ? sprite.firing : "false";
+      el.innerHTML = sprite.firing ? sprite.firing : "false";
+      el = $get("m1-8");
+      el.className = sprite.dying ? sprite.dying : "false";
+      el.innerHTML = sprite.dying ? sprite.dying : "false";
+      
+      $get("m2-0").innerHTML = recStr(sprite.platform);
+      $get("m2-1").innerHTML = vectStr(sprite.position);
+      $get("m2-2").innerHTML = vectStr(sprite.prevPos);
+      $get("m2-3").innerHTML = vectStr(sprite.actualPos);
+      //tr.append($("<th></th>").html("died"));
+      //tr.append($(`<td class='${sprite.died}'></td>`).html(sprite.died + ""));
+      $get("m2-4").innerHTML = vectStr(sprite.direction);
+      
+      $get("m3-0").innerHTML = recStr(sprite.boundBox, false);
+      $get("m3-1").innerHTML = vectStr(sprite.velocity);      
+      //
+      $get("m3-3").innerHTML = vectStr(sprite.freePos);
+      
+      
+    } // dumpSprite
+    
+    function vectStr(vect) {
+      if(!vect) return "";
+      return `(${round(vect.x, 3)}, ${round(vect.y, 3)})`;
+    }
+    
+    function recStr(rect, bWidthHeight = true) {
+      if(!rect) return "";
+      const sRect = rect.toString();
+      const k = (bWidthHeight ? sRect.length : sRect.lastIndexOf('['));
+      return sRect.substring(sRect.indexOf(' ') + 1, k);
+    }
+        
+    function $get( id ) { 
+      return document.getElementById(id); 
+    }
+    
+    
+    // Fa partire un conteggio che arresta l'elaborazione dopo un numero di frame stabiliti.
+    function stopAfter( iNFrm ) {
+      _iMarkFrame = frameCount + iNFrm;
+      console.log("--- Stop countdown: " + frameCount + " to " + _iMarkFrame + "...");
+    } // stopAfter
+
+    // Se esiste un countdown di frame arresta l'elaborazione dopo il numero di frame richiesti.
+    function checkStop() {
+      if(frameCount == _iMarkFrame) {
+        console.log("--- Stopped on frame: " + frameCount + ".");
+        _iMarkFrame = 0;
+        noLoop();
+      }
+    } // checkStop
+
+            
+    
+  </script>
+  
+</body>
+
+</html>  
+  
+  

@@ -1,0 +1,1197 @@
+{
+  "file": "pix/impossible.png",
+  "frames": [
+    {
+      "name": "ag00R/0",
+      "type": "raster",
+      "position": {
+        "x": 278,
+        "y": 342,
+        "w": 25,
+        "h": 55
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag00L/0",
+      "type": "raster",
+      "position": {
+        "x": 749,
+        "y": 160,
+        "w": 25,
+        "h": 55
+      },
+      "sound": ""
+    },
+
+    {
+      "name": "ag00U/0",
+      "type": "raster",
+      "position": {
+        "x": 126,
+        "y": 9,
+        "w": 35,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag00D/0",
+      "type": "raster",
+      "position": {
+        "x": 89,
+        "y": 9,
+        "w": 31,
+        "h": 61
+      },
+      "sound": ""
+    },
+
+    {
+      "name": "ag01R/0",
+      "type": "raster",
+      "position": {
+        "x": 342,
+        "y": 338,
+        "w": 30,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/1",
+      "type": "raster",
+      "position": {
+        "x": 408,
+        "y": 338,
+        "w": 35,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/2",
+      "type": "raster",
+      "position": {
+        "x": 466,
+        "y": 336,
+        "w": 39,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/3",
+      "type": "raster",
+      "position": {
+        "x": 538,
+        "y": 338,
+        "w": 45,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/4",
+      "type": "raster",
+      "position": {
+        "x": 605,
+        "y": 336,
+        "w": 49,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/5",
+      "type": "raster",
+      "position": {
+        "x": 672,
+        "y": 337,
+        "w": 45,
+        "h": 60
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/6",
+      "type": "raster",
+      "position": {
+        "x": 736,
+        "y": 338,
+        "w": 31,
+        "h": 59
+      },
+      "sound": "sfx/imp_step1.mp3"
+    },
+    {
+      "name": "ag01R/7",
+      "type": "raster",
+      "position": {
+        "x": 345,
+        "y": 433,
+        "w": 27,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/8",
+      "type": "raster",
+      "position": {
+        "x": 403,
+        "y": 433,
+        "w": 33,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/9",
+      "type": "raster",
+      "position": {
+        "x": 464,
+        "y": 431,
+        "w": 39,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/10",
+      "type": "raster",
+      "position": {
+        "x": 532,
+        "y": 433,
+        "w": 45,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/11",
+      "type": "raster",
+      "position": {
+        "x": 605,
+        "y": 431,
+        "w": 49,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/12",
+      "type": "raster",
+      "position": {
+        "x": 669,
+        "y": 432,
+        "w": 45,
+        "h": 60
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01R/13",
+      "type": "raster",
+      "position": {
+        "x": 734,
+        "y": 433,
+        "w": 31,
+        "h": 59
+      },
+      "sound": "sfx/imp_step1.mp3"
+    },
+
+    {
+      "name": "ag01L/0",
+      "type": "raster",
+      "position": {
+        "x": 680,
+        "y": 155,
+        "w": 30,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/1",
+      "type": "raster",
+      "position": {
+        "x": 609,
+        "y": 155,
+        "w": 35,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/2",
+      "type": "raster",
+      "position": {
+        "x": 547,
+        "y": 153,
+        "w": 39,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/3",
+      "type": "raster",
+      "position": {
+        "x": 469,
+        "y": 155,
+        "w": 45,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/4",
+      "type": "raster",
+      "position": {
+        "x": 398,
+        "y": 153,
+        "w": 49,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/5",
+      "type": "raster",
+      "position": {
+        "x": 335,
+        "y": 154,
+        "w": 45,
+        "h": 60
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/6",
+      "type": "raster",
+      "position": {
+        "x": 285,
+        "y": 155,
+        "w": 31,
+        "h": 59
+      },
+      "sound": "sfx/imp_step1.mp3"
+    },
+    {
+      "name": "ag01L/7",
+      "type": "raster",
+      "position": {
+        "x": 680,
+        "y": 250,
+        "w": 27,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/8",
+      "type": "raster",
+      "position": {
+        "x": 616,
+        "y": 250,
+        "w": 33,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/9",
+      "type": "raster",
+      "position": {
+        "x": 549,
+        "y": 248,
+        "w": 39,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/10",
+      "type": "raster",
+      "position": {
+        "x": 475,
+        "y": 250,
+        "w": 45,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/11",
+      "type": "raster",
+      "position": {
+        "x": 398,
+        "y": 248,
+        "w": 49,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/12",
+      "type": "raster",
+      "position": {
+        "x": 338,
+        "y": 249,
+        "w": 45,
+        "h": 60
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag01L/13",
+      "type": "raster",
+      "position": {
+        "x": 287,
+        "y": 250,
+        "w": 31,
+        "h": 59
+      },
+      "sound": "sfx/imp_step1.mp3"
+    },
+    {
+      "name": "ag02R/0",
+      "type": "raster",
+      "position": {
+        "x": 15,
+        "y": 517,
+        "w": 49,
+        "h": 45
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/1",
+      "type": "raster",
+      "position": {
+        "x": 86,
+        "y": 517,
+        "w": 35,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/2",
+      "type": "raster",
+      "position": {
+        "x": 149,
+        "y": 518,
+        "w": 37,
+        "h": 39
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/3",
+      "type": "raster",
+      "position": {
+        "x": 207,
+        "y": 518,
+        "w": 49,
+        "h": 25
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/4",
+      "type": "raster",
+      "position": {
+        "x": 284,
+        "y": 518,
+        "w": 35,
+        "h": 31
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/5",
+      "type": "raster",
+      "position": {
+        "x": 360,
+        "y": 518,
+        "w": 29,
+        "h": 35
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/6",
+      "type": "raster",
+      "position": {
+        "x": 422,
+        "y": 518,
+        "w": 29,
+        "h": 31
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/7",
+      "type": "raster",
+      "position": {
+        "x": 479,
+        "y": 518,
+        "w": 45,
+        "h": 27
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/8",
+      "type": "raster",
+      "position": {
+        "x": 544,
+        "y": 518,
+        "w": 61,
+        "h": 29
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/9",
+      "type": "raster",
+      "position": {
+        "x": 624,
+        "y": 518,
+        "w": 49,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/10",
+      "type": "raster",
+      "position": {
+        "x": 693,
+        "y": 518,
+        "w": 31,
+        "h": 63
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02R/11",
+      "type": "raster",
+      "position": {
+        "x": 748,
+        "y": 518,
+        "w": 32,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/0",
+      "type": "raster",
+      "position": {
+        "x": 728,
+        "y": 79,
+        "w": 49,
+        "h": 45
+      },
+      "sound": ""
+    },
+
+    {
+      "name": "ag02L/1",
+      "type": "raster",
+      "position": {
+        "x": 671,
+        "y": 79,
+        "w": 35,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/2",
+      "type": "raster",
+      "position": {
+        "x": 606,
+        "y": 80,
+        "w": 37,
+        "h": 39
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/3",
+      "type": "raster",
+      "position": {
+        "x": 536,
+        "y": 80,
+        "w": 49,
+        "h": 25
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/4",
+      "type": "raster",
+      "position": {
+        "x": 473,
+        "y": 80,
+        "w": 35,
+        "h": 31
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/5",
+      "type": "raster",
+      "position": {
+        "x": 403,
+        "y": 80,
+        "w": 29,
+        "h": 35
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/6",
+      "type": "raster",
+      "position": {
+        "x": 341,
+        "y": 80,
+        "w": 29,
+        "h": 31
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/7",
+      "type": "raster",
+      "position": {
+        "x": 268,
+        "y": 80,
+        "w": 45,
+        "h": 27
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/8",
+      "type": "raster",
+      "position": {
+        "x": 187,
+        "y": 80,
+        "w": 61,
+        "h": 29
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/9",
+      "type": "raster",
+      "position": {
+        "x": 119,
+        "y": 80,
+        "w": 49,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/10",
+      "type": "raster",
+      "position": {
+        "x": 68,
+        "y": 80,
+        "w": 31,
+        "h": 63
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag02L/11",
+      "type": "raster",
+      "position": {
+        "x": 11,
+        "y": 80,
+        "w": 33,
+        "h": 61
+      },
+      "sound": ""
+    },
+
+    {
+      "name": "ag03R/0",
+      "type": "raster",
+      "position": {
+        "x": 17,
+        "y": 9,
+        "w": 31,
+        "h": 61
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag03L/0",
+      "type": "raster",
+      "position": {
+        "x": 749,
+        "y": 8,
+        "w": 32,
+        "h": 61
+      },
+      "sound": ""
+    },
+
+    {
+      "name": "ag04L/0",
+      "type": "link",
+      "refer": "ag02L/10",
+      "sound": ""
+    },
+    {
+      "name": "ag04L/1",
+      "type": "link",
+      "refer": "ag02L/9",
+      "sound": ""
+    },
+    {
+      "name": "ag04L/2",
+      "type": "link",
+      "refer": "ag02L/8",
+      "sound": ""
+    },
+    {
+      "name": "ag04R/0",
+      "type": "link",
+      "refer": "ag02R/10",
+      "sound": ""
+    },
+    {
+      "name": "ag04R/1",
+      "type": "link",
+      "refer": "ag02R/9",
+      "sound": ""
+    },
+    {
+      "name": "ag04R/2",
+      "type": "link",
+      "refer": "ag02R/8",
+      "sound": ""
+    },
+
+    {
+      "name": "ag05R/0",
+      "type": "link",
+      "refer": "ag02R/10",
+      "sound": ""
+    },
+    {
+      "name": "ag05L/0",
+      "type": "link",
+      "refer": "ag02L/10",
+      "sound": ""
+    },
+
+    {
+      "name": "ag00tst/0",
+      "type": "link",
+      "refer": "ag00D/0",
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/1",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 0.5235987755982988,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/2",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 1.0471975511965976,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/3",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 1.5707963267948966,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/4",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 2.0943951023931953,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/5",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 2.6179938779914944,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/6",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 3.141592653589793,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/7",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 3.6651914291880923,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/8",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 4.1887902047863905,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/9",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 4.71238898038469,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/10",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 5.235987755982989,
+      "sound": ""
+    },
+    {
+      "name": "ag00tst/11",
+      "type": "rotate",
+      "refer": "ag00D/0",
+      "angleMode": "radians",
+      "angle": 5.759586531581287,
+      "sound": ""
+    },
+
+
+    {
+      "name": "gl00/0",
+      "type": "raster",
+      "position": {
+        "x": 12,
+        "y": 238,
+        "w": 49,
+        "h": 39
+      },
+      "sound": ""
+    },
+    {
+      "name": "cur00/0",
+      "type": "raster",
+      "position": {
+        "x": 16,
+        "y": 305,
+        "w": 49,
+        "h": 43
+      },
+      "sound": ""
+    },
+
+    {
+      "name": "ag06R/0",
+      "type": "link",
+      "refer": "ag00R/0",
+      "sound": ""
+    },
+    {
+      "name": "ag06R/1",
+      "type": "raster",
+      "position": {
+        "x": 25,
+        "y": 171,
+        "w": 27,
+        "h": 53
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag06R/2",
+      "type": "raster",
+      "position": {
+        "x": 67,
+        "y": 176,
+        "w": 27,
+        "h": 47
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag06R/3",
+      "type": "raster",
+      "position": {
+        "x": 114,
+        "y": 180,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+
+    {
+      "name": "ag06L/0",
+      "type": "flip-x",
+      "refer": "ag06R/0",
+      "sound": ""
+    },
+    {
+      "name": "ag06L/1",
+      "type": "flip-x",
+      "refer": "ag06R/1",
+      "sound": ""
+    },
+    {
+      "name": "ag06L/2",
+      "type": "flip-x",
+      "refer": "ag06R/2",
+      "sound": ""
+    },
+    {
+      "name": "ag06L/3",
+      "type": "flip-x",
+      "refer": "ag06R/3",
+      "sound": ""
+    },
+
+    {
+      "name": "ag08L/0",
+      "type": "raster",
+      "position": {
+        "x": 399,
+        "y": 10,
+        "w": 29,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag08L/1",
+      "type": "raster",
+      "position": {
+        "x": 438,
+        "y": 9,
+        "w": 27,
+        "h": 60
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag08L/2",
+      "type": "raster",
+      "position": {
+        "x": 477,
+        "y": 9,
+        "w": 31,
+        "h": 60
+      },
+      "millis": 200,
+      "sound": ""
+    },
+    {
+      "name": "ag08L/3",
+      "type": "raster",
+      "position": {
+        "x": 522,
+        "y": 10,
+        "w": 29,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag08L/4",
+      "type": "raster",
+      "position": {
+        "x": 563,
+        "y": 10,
+        "w": 25,
+        "h": 59
+      },
+      "sound": ""
+    },
+    {
+      "name": "ag08L/5",
+      "type": "link",
+      "refer": "ag00L/0",
+      "sound": ""
+    },
+
+    {
+      "name": "ag08R/0",
+      "type": "flip-x",
+      "refer": "ag08L/0",
+      "sound": ""
+    },
+    {
+      "name": "ag08R/1",
+      "type": "flip-x",
+      "refer": "ag08L/1",
+      "sound": ""
+    },
+    {
+      "name": "ag08R/2",
+      "type": "flip-x",
+      "refer": "ag08L/2",
+      "millis": 200,
+      "sound": ""
+    },
+    {
+      "name": "ag08R/3",
+      "type": "flip-x",
+      "refer": "ag08L/3",
+      "sound": ""
+    },
+    {
+      "name": "ag08R/4",
+      "type": "flip-x",
+      "refer": "ag08L/4",
+      "sound": ""
+    },
+    {
+      "name": "ag08R/5",
+      "type": "flip-x",
+      "refer": "ag08L/5",
+      "sound": ""
+    }
+
+
+  ],
+
+  "anim": {
+
+    "ag00R": {
+      "name": "ag00R",
+      "align": 1,
+      "valign": 2,
+      "blocking": false,
+      "descr": "Agente fermo (dx)",
+      "loop": false,
+      "millis": 500
+    },
+    "ag00L": {
+      "name": "ag00L",
+      "align": 1,
+      "valign": 2,
+      "blocking": false,
+      "descr": "Agente fermo (sx)",
+      "loop": false,
+      "millis": 500
+    },
+
+    "ag00U": {
+      "name": "ag00U",
+      "align": 1,
+      "valign": 2,
+      "blocking": false,
+      "descr": "Agente fermo (ricerca)",
+      "loop": true,
+      "millis": 500
+    },
+    "ag00D": {
+      "name": "ag00D",
+      "align": 1,
+      "valign": 2,
+      "blocking": false,
+      "descr": "Agente fermo (fronte)",
+      "loop": true,
+      "millis": 500
+    },
+    "ag00tst": {
+      "align": 1,
+      "valign": 1,
+      "blocking": true,
+      "loop": true,
+      "millis": 100,
+      "name": "ag00tst",
+      "descr": "Agente in rotazione"
+    },
+
+    "ag01R": {
+      "name": "ag01R",
+      "align": 1,
+      "valign": 2,
+      "blocking": false,
+      "descr": "Agente in corsa (dx)",
+      "loop": true,
+      "millis": 50
+    },
+    "ag01L": {
+      "name": "ag01L",
+      "align": 1,
+      "valign": 2,
+      "blocking": false,
+      "descr": "Agente in corsa (sx)",
+      "loop": true,
+      "millis": 50
+    },
+
+    "ag02R": {
+      "name": "ag02R",
+      "align": 0,
+      "valign": 0,
+      "blocking": true,
+      "descr": "Agente in salto (dx)",
+      "loop": false,
+      "millis": 50
+    },
+    "ag02L": {
+      "name": "ag02L",
+      "align": 0,
+      "valign": 0,
+      "blocking": true,
+      "descr": "Agente in salto (sx)",
+      "loop": false,
+      "millis": 50
+    },
+
+    "ag03R": {
+      "name": "ag03R",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente fa fuoco (dx)",
+      "loop": true,
+      "millis": 500
+    },
+    "ag03L": {
+      "name": "ag03L",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente fa fuoco (sx)",
+      "loop": true,
+      "millis": 500
+    },
+
+    "ag04L": {
+      "name": "ag04L",
+      "align": 1,
+      "valign": 1,
+      "blocking": true,
+      "descr": "Agente colpito (sx)",
+      "loop": false,
+      "millis": 70,
+      "exit": false
+    },
+    "ag04R": {
+      "name": "ag04R",
+      "align": 1,
+      "valign": 1,
+      "blocking": true,
+      "descr": "Agente colpito (dx)",
+      "loop": false,
+      "millis": 70,
+      "exit": false
+    },
+
+    "ag05L": {
+      "name": "ag05L",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente in caduta (sx)",
+      "loop": true,
+      "millis": 130
+    },
+    "ag05R": {
+      "name": "ag05R",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente in caduta (dx)",
+      "loop": true,
+      "millis": 130
+    },
+
+    "ag06R": {
+      "name": "ag06R",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente si abbassa (dx)",
+      "loop": false,
+      "exit": false,
+      "millis": 70
+    },
+    "ag06L": {
+      "name": "ag06L",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente si abbassa (sx)",
+      "loop": false,
+      "exit": false,
+      "millis": 70
+    },
+
+    "ag07R": {
+      "name": "ag07R",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente si alza (dx)",
+      "loop": false,
+      "millis": 70,
+      "refer": "ag06R",
+      "reverse": true
+    },
+    "ag07L": {
+      "name": "ag07L",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente si alza (sx)",
+      "loop": false,
+      "millis": 70,
+      "refer": "ag06L",
+      "reverse": true
+    },
+
+    "ag08R": {
+      "name": "ag08R",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente spinge (dx)",
+      "loop": false,
+      "millis": 130
+    },
+    "ag08L": {
+      "name": "ag08L",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Agente spinge (sx)",
+      "loop": false,
+      "millis": 130
+    }
+
+
+  }
+}

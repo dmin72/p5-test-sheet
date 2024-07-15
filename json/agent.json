@@ -1,0 +1,392 @@
+{
+  "file": "pix/agente_sprite2.png",
+  "frames": [
+    {
+      "name": "ag00R/0",
+      "type": "raster",
+      "position": {
+        "x": 8,
+        "y": 22,
+        "w": 32,
+        "h": 72
+      },
+      "sound": "sfx/passo.mp3"
+    },
+    {
+      "name": "ag00L/0",
+      "type": "flip-x",
+      "refer": "ag00R/0",
+      "sound": "sfx/passo.mp3"
+    },
+    {
+      "name": "ag00U/0",
+      "type": "raster",
+      "position": {
+        "x": 696,
+        "y": 17,
+        "w": 45,
+        "h": 77
+      }
+    },
+    {
+      "name": "ag00tst/0",
+      "type": "rotate",
+      "refer": "ag00U/0",
+      "angleMode": "radians",
+      "angle": 1.0471975511965976
+    },
+    {
+      "name": "ag01R/0",
+      "type": "raster",
+      "position": {
+        "x": 109,
+        "y": 19,
+        "w": 36,
+        "h": 75
+      },
+      "sound": "sfx/passo.mp3"
+    },
+    {
+      "name": "ag01R/1",
+      "type": "raster",
+      "position": {
+        "x": 174,
+        "y": 19,
+        "w": 45,
+        "h": 75
+      }
+    },
+    {
+      "name": "ag01R/2",
+      "type": "raster",
+      "position": {
+        "x": 248,
+        "y": 17,
+        "w": 49,
+        "h": 77
+      }
+    },
+    {
+      "name": "ag01R/3",
+      "type": "raster",
+      "position": {
+        "x": 323,
+        "y": 17,
+        "w": 58,
+        "h": 77
+      }
+    },
+    {
+      "name": "ag01R/4",
+      "type": "raster",
+      "position": {
+        "x": 399,
+        "y": 14,
+        "w": 62,
+        "h": 80
+      }
+    },
+    {
+      "name": "ag01R/5",
+      "type": "raster",
+      "position": {
+        "x": 469,
+        "y": 17,
+        "w": 58,
+        "h": 77
+      }
+    },
+    {
+      "name": "ag01R/6",
+      "type": "raster",
+      "position": {
+        "x": 545,
+        "y": 19,
+        "w": 40,
+        "h": 75
+      }
+    },
+    {
+      "name": "ag01L/0",
+      "type": "flip-x",
+      "refer": "ag01R/0",
+      "sound": "sfx/passo.mp3"
+    },
+    {
+      "name": "ag01L/1",
+      "type": "flip-x",
+      "refer": "ag01R/1"
+    },
+    {
+      "name": "ag01L/2",
+      "type": "flip-x",
+      "refer": "ag01R/2"
+    },
+    {
+      "name": "ag01L/3",
+      "type": "flip-x",
+      "refer": "ag01R/3"
+    },
+    {
+      "name": "ag01L/4",
+      "type": "flip-x",
+      "refer": "ag01R/4"
+    },
+    {
+      "name": "ag01L/5",
+      "type": "flip-x",
+      "refer": "ag01R/5"
+    },
+    {
+      "name": "ag01L/6",
+      "type": "flip-x",
+      "refer": "ag01R/6"
+    },
+    {
+      "name": "ag02R/0",
+      "type": "raster",
+      "position": {
+        "x": 6,
+        "y": 193,
+        "w": 62,
+        "h": 55
+      }
+    },
+    {
+      "name": "ag02R/1",
+      "type": "raster",
+      "position": {
+        "x": 94,
+        "y": 186,
+        "w": 45,
+        "h": 62
+      }
+    },
+    {
+      "name": "ag02R/2",
+      "type": "raster",
+      "position": {
+        "x": 167,
+        "y": 170,
+        "w": 47,
+        "h": 78
+      }
+    },
+    {
+      "name": "ag02R/3",
+      "type": "raster",
+      "position": {
+        "x": 235,
+        "y": 168,
+        "w": 62,
+        "h": 80
+      }
+    },
+    {
+      "name": "ag02R/4",
+      "type": "raster",
+      "position": {
+        "x": 318,
+        "y": 158,
+        "w": 45,
+        "h": 90
+      }
+    },
+    {
+      "name": "ag02R/5",
+      "type": "raster",
+      "position": {
+        "x": 406,
+        "y": 148,
+        "w": 38,
+        "h": 100
+      }
+    },
+    {
+      "name": "ag02R/6",
+      "type": "raster",
+      "position": {
+        "x": 474,
+        "y": 148,
+        "w": 38,
+        "h": 100
+      }
+    },
+    {
+      "name": "ag02R/7",
+      "type": "raster",
+      "position": {
+        "x": 530,
+        "y": 155,
+        "w": 57,
+        "h": 93
+      }
+    },
+    {
+      "name": "ag02R/8",
+      "type": "raster",
+      "position": {
+        "x": 608,
+        "y": 158,
+        "w": 78,
+        "h": 90
+      }
+    },
+    {
+      "name": "ag02R/9",
+      "type": "raster",
+      "position": {
+        "x": 699,
+        "y": 153,
+        "w": 65,
+        "h": 95
+      }
+    },
+    {
+      "name": "ag02R/10",
+      "type": "raster",
+      "position": {
+        "x": 785,
+        "y": 158,
+        "w": 39,
+        "h": 90
+      }
+    },
+    {
+      "name": "ag02R/11",
+      "type": "raster",
+      "position": {
+        "x": 848,
+        "y": 170,
+        "w": 42,
+        "h": 78
+      }
+    },
+    {
+      "name": "ag02L/0",
+      "type": "flip-x",
+      "refer": "ag02R/0"
+    },
+    {
+      "name": "ag02L/1",
+      "type": "flip-x",
+      "refer": "ag02R/1"
+    },
+    {
+      "name": "ag02L/2",
+      "type": "flip-x",
+      "refer": "ag02R/2"
+    },
+    {
+      "name": "ag02L/3",
+      "type": "flip-x",
+      "refer": "ag02R/3"
+    },
+    {
+      "name": "ag02L/4",
+      "type": "flip-x",
+      "refer": "ag02R/4"
+    },
+    {
+      "name": "ag02L/5",
+      "type": "flip-x",
+      "refer": "ag02R/5"
+    },
+    {
+      "name": "ag02L/6",
+      "type": "flip-x",
+      "refer": "ag02R/6"
+    },
+    {
+      "name": "ag02L/7",
+      "type": "flip-x",
+      "refer": "ag02R/7"
+    },
+    {
+      "name": "ag02L/8",
+      "type": "flip-x",
+      "refer": "ag02R/8"
+    },
+    {
+      "name": "ag02L/9",
+      "type": "flip-x",
+      "refer": "ag02R/9"
+    },
+    {
+      "name": "ag02L/10",
+      "type": "flip-x",
+      "refer": "ag02R/10"
+    },
+    {
+      "name": "ag02L/11",
+      "type": "flip-x",
+      "refer": "ag02R/11"
+    }
+  ],
+  "anim": {
+    "ag00R": {
+      "name": "ag00R",
+      "desc": "Agente fermo (dx)",
+      "millis": 75,
+      "loop": false,
+      "blocking": false,
+      "align": 1,
+      "valign": 2
+    },
+    "ag00L": {
+      "name": "ag00L",
+      "desc": "Agente fermo (sx)",
+      "millis": 75,
+      "loop": false,
+      "blocking": false,
+      "align": 1,
+      "valign": 2
+    },
+    "ag00U": {
+      "name": "ag00U",
+      "desc": "Agente in ricerca",
+      "millis": 75,
+      "loop": true,
+      "blocking": false,
+      "align": 1,
+      "valign": 2
+    },
+    "ag01R": {
+      "name": "ag01R",
+      "desc": "Agente in corsa (dx)",
+      "millis": 75,
+      "loop": true,
+      "blocking": false,
+      "align": 1,
+      "valign": 1
+    },
+    "ag01L": {
+      "name": "ag01L",
+      "desc": "Agente in corsa (sx)",
+      "millis": 75,
+      "loop": true,
+      "blocking": false,
+      "align": 1,
+      "valign": 1
+    },
+    "ag02R": {
+      "name": "ag02R",
+      "desc": "Agente in salto (dx)",
+      "millis": 75,
+      "loop": false,
+      "blocking": true,
+      "align": 1,
+      "valign": 0
+    },
+    "ag02L": {
+      "name": "ag02L",
+      "desc": "Agente in salto (sx)",
+      "millis": 75,
+      "loop": false,
+      "blocking": true,
+      "align": 1,
+      "valign": 0
+    }
+  }
+}
+

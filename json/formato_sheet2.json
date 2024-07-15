@@ -1,0 +1,243 @@
+
+//-------------------------------------------
+//-- FORMATO FILE DEFINIZIONE SPRITE SHEET --
+//-------------------------------------------
+//
+// Lo sheet elenca un insieme di frame che si riferiscono ad un singolo sprite o gruppo di sprite.
+// I frame possono essere organizzati opzionalmente in animazioni.
+// Una volta caricato in memoria lo spritesheet viene costruito con una procedura javascript che
+// estrae le immagini di ciascun frame e ne conserva i bitmap nello spritesheet stesso.
+// La procedura estende il membro "anim" definendo in esso, per ciascun elemento che rappresenta
+// un'animazione, l'array "frames" contenente gli oggetti che riconducono ai frame di animazione.
+// L'oggetto creato dallo spritesheet viene importato in un oggetto di classe SpriteSheet.
+
+var agentSheet =
+{
+  // immagine a cui si riferiscono i dati di posizione dei frame dello sheet
+  "file": "/pix/agente_sprite2.png",
+
+  // array che descrive i frame e il loro posizionamento nel file dello spritesheet
+  "frames": [
+
+    // i frame di tipo "raster" referenziano porzioni di immagine dello spritesheet
+    {
+      // il nome del frame si compone di un prefisso ("ag00") che indica il codice
+      // di animazione (opzionale) e un numero di frame della sequenza di animazione (a base 0)
+      "name": "ag00/0",
+
+      // indica che il frame è estratto come un'effettiva porzione rettangolare dello spritesheet
+      "type": "raster",
+      // se presente e valorizzata con un numero > -1 consente di estrarre un frame dall'immagine caricata
+      // (utile solo se l'immagine dello spritesheet è una GIF)
+      "frame": -1,
+      // porzione rettangolare dello spritesheet da assegnare al frame
+      "position": {
+        // coordinate x e y del punto in alto a sx da cui riferire la porzione di immagine
+        "x": 8,
+        "y": 22,
+        // larghezza e altezza del rettangolo di pixel da assegnare al frame a partire da (x, y)
+        "w": 32,
+        "h": 72
+      },
+
+      // se presente specifica il file di un suono da riprodurre mentre viene mostrato il frame
+      "sound": "/wav/step.wav",
+      // se presente considera questo valore come l'intervallo in millisecondi tra questo frame e il successivo
+      // (normalmente viene definito a livello globale nell'oggetto di animazione definito nel membro anim)
+      "millis": 200,
+
+      // oggetto che descrive le trasformazioni geometriche da applicare al frame in fase di riproduzione 
+      // dell'animazione di appartenenza: se presente a questo livello va in priorità rispetto al medesimo 
+      // oggetto definito a livello di animazione o globale di istanza (manuale, opzionale)
+      // scaleX, scaleY: fattore di scala percentuale disegno frame
+      // rotate: angolo di rotazione dell'asse Z (in radianti e in senso orario)
+      // shearX, shearY: angoli di applicazione della trasformazione shear (in radianti e in senso orario)
+      "transf": {
+        "scaleX": 2.5,
+        "scaleY": 1.0,
+        "rotate": 0.0,        
+        "shearX": 0.0,
+        "shearY": 0.0
+      }
+
+    },
+
+    // i frame calcolati applicano delle trasformazioni o dei semplici riferimenti ad altri frame
+    // da visualizzare nell'animazione
+    {
+      "name": "ag01/0",
+      // trasformazione da applicare ad un frame di riferimento:
+      // "link": frame estratto da un altro frame già presente,
+      // "flip-x": frame speculato in orizzontale, "flip-y": frame speculato in verticale,
+      // "rotate": frame ruotato, "scale": frame scalato
+      "type": "flip-x",
+      // nome del frame a cui si riferisce questo frame
+      "refer": "ag00/0",
+
+      // parametri per type: rotate
+      // modalità di rotazione da applicare al frame ("degrees" per i gradi, "radians" per i radianti)
+      "angleMode": "radians",
+      // angolo di rotazione da applicare al frame, in gradi o radianti
+      "angle": 0,
+
+      // parametri per type: scale
+      // valore di scalatura percentuale applicata sulle relative coordinate
+      "scaleX": 2.0,
+      "scaleY": 1.0,
+
+      "sound": ""
+    }
+
+  ],
+
+  // oggetto che descrive animazioni in cui organizzare i frame:
+  // il nome dei membri (es. "ag00") corrisponderanno al prefisso del nome dei frame
+  // della relativa animazione
+  "anim": {
+
+    // codice animazione (opzionale ma, se presente, va immesso manualmente)
+    "ag00": {
+      // codice animazione (manuale)
+      "name": "ag00",
+      // descrizione opzionale dell'animazione (manuale)
+      "descr": "Agente fermo (verso destra)",
+      // numero di millisecondi di intervallo tra ciascun frame di animazione (manuale, default: 20)
+      "millis": 20,
+      // indica che l'animazione si ripete all'infinito, finchè non fermata (manuale, default: true)
+      "loop": false,
+      
+      // indica se l'animazione, durante l'esecuzione, blocca o meno lo sprite dai movimenti del giocatore (manuale, default: false)
+      "blocking": false,
+      // indica se l'animazione, al termine, esce e torna a visualizzare il frame di riferimento 
+      // oppure se lascia in questo l'ultimo frame dell'animazione (manuale, default: true)
+      "exit": true,
+      // allineamento dei frame dell'animazione rispetto alla larghezza/altezza di riferimento (manuali)
+      // SpriteFrameAlign.Left (0), SpriteFrameAlign.Center (1 = default), SpriteFrameAlign.Right (2)
+      "align": 1,
+      // SpriteFrameVAlign.Top (0), SpriteFrameVAlign.Middle (1), SpriteFrameVAlign.Bottom (2 = default)
+      "valign": 2,
+      // indica al modulo di animazione di mostrare o meno i frame in senso inverso
+      "reverse": false,
+
+      // se presente indica allo spritesheet, in fase di esecuzione, di non cercare i frame dell'animazione corrente
+      // ma di estrarre questi dal codice di un'animazione specificata già definita precedentemente (manuale, default: assente)
+      "refer": "ag99",
+
+      // array dei frame di animazione (costruito proceduralmente)
+      "frames": [
+        {
+          // indice di posizionamento del frame corrente nell'array frames dello spritesheet
+          "index": 0,
+          // nome riportato dal relativo frame estratto dall'array frames
+          "name": "ag00/0",
+
+          // ampiezza dell'immagine estratta dal frame di animazione
+          "width": 32,
+          // altezza dell'immagine estratta dal frame di animazione
+          "height": 72,
+
+          // dopo la costruzione procedurale dello spritesheet conterrà i dati bitmap del frame estratto
+          "image": null,
+          // dopo la costruzione procedurale dello spritesheet conterrà l'indice dell'array "snd" dove
+          // sono conservati i dati del suono da riprodurre, opppure undefined (opzionale)
+          "sound": 0
+        }
+      ],
+
+      // oggetto che descrive le trasformazioni geometriche da applicare ai frame in fase di riproduzione 
+      // dell'animazione: se presente a questo livello va in priorità rispetto al medesimo oggetto definito 
+      // a livello globale di istanza (manuale, opzionale)
+      // scaleX, scaleY: fattore di scala percentuale disegno frame
+      // rotate: angolo di rotazione dell'asse Z (in radianti e in senso orario)
+      // shearX, shearY: angoli di applicazione della trasformazione shear (in radianti e in senso orario)
+      "transf": {
+        "scaleX": 2.5,
+        "scaleY": 1.0,
+        "rotate": 0.0,        
+        "shearX": 0.0,
+        "shearY": 0.0
+      }
+
+    },
+
+    // codice animazione (opzionale ma, se presente, va immesso manualmente)
+    "ag01": {
+      // codice animazione
+      "name": "ag01",
+      // descrizione opzionale dell'animazione (manuale)
+      "descr": "Agente fermo (verso sinistra)",
+      // numero di millisecondi di intervallo tra ciascun frame di animazione (manuale)
+      "millis": 20,
+      "loop": false,
+      "blocking": false
+    },
+
+    "ag02": {
+      "name": "ag02",
+      "descr": "Agente in corsa (verso destra)",
+      "millis": 20,
+      "loop": true,
+      "blocking": false
+    },
+
+    "ag03": {
+      "name": "ag03",
+      "descr": "Agente in corsa (verso sinistra)",
+      "millis": 20,
+      "loop": true,
+      "blocking": false
+    },
+
+    "ag04": {
+      "name": "ag04",
+      "descr": "Agente in salto (verso destra)",
+      "millis": 20,
+      "loop": true,
+      "blocking": true
+    },
+
+    "ag05": {
+      "name": "ag05",
+      "descr": "Agente in salto (verso sinistra)",
+      "millis": 20,
+      "loop": true,
+      "blocking": true
+    }
+
+  },
+
+  // array definito durante la costruzione procedurale dello spritesheet
+  // che elenca gli oggetti di animazione presenti nel membro "anim"
+  "animList": [
+    "ag00", "ag01", "ag02", "ag03", "ag04", "ag05"
+  ],
+
+  // array definito durante la costruzione procedurale dello spritesheet
+  // che conserva gli oggetti p5.SoundFile utilizzati dalle animazioni dello sprite
+  // nei diversi frame
+  "snd": [
+    {
+      // indice con qui questo oggetto è inserito nell'array "snd"
+      "index": 0,
+      // URL originaria del file, che farà da chiave
+      "urlFile": "/wav/step.wav",
+      // dati binari del file p5.SoundFile che riproduce il suono
+      "sound": null
+    }
+  ],
+
+  // oggetto definito manualmente (opzionale) che descrive le trasformazioni geometriche da applicare ai frame durante 
+  // la riproduzione di tutte le animazioni/frame che non ne prevedono:
+  // scaleX, scaleY: fattore di scala percentuale disegno frame
+  // rotate: angolo di rotazione dell'asse Z (in radianti e in senso orario)
+  // shearX, shearY: angoli di applicazione della trasformazione shear (in radianti e in senso orario)
+  "transf": {
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "rotate": 0.0,        
+        "shearX": 0.0,
+        "shearY": 0.0
+      }
+
+}
+

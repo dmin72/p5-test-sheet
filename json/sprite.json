@@ -1,0 +1,241 @@
+{
+  "id": 51483540,
+  "name": "newSprite",
+  "animRef": "ag00R",
+  "frameRef": 0,
+  "widthRef": 25,
+  "heightRef": 55,
+  "width": 25,
+  "height": 55,
+  "position": null,
+  "prevPos": null,
+  "offsetPos": null,
+  "actualPos": null,
+  "hitBox": {
+    "width": 25,
+    "height": 55,
+    "position": null,
+    "posCenter": null
+  },
+  "hitDelta": 1,
+  "velocity": null,
+  "acceleration": null,
+  "direction": null,
+  "dirAngle": null,
+  "rotation": null,
+  "scale": null,
+  "gravity": null,
+  "mass": 1,
+  "damping": 0.98,
+  "player": null,
+  "springs": [],
+  "spriteSheet": null,
+  "anim": {
+    "ag00R": {
+      "name": "ag00R",
+      "frames": [],
+      "loop": false,
+      "blocking": false,
+      "millis": 20,
+      "align": 1,
+      "valign": 2
+    },
+    "ag00L": {
+      "name": "ag00L",
+      "frames": [],
+      "loop": false,
+      "blocking": false,
+      "millis": 20,
+      "align": 1,
+      "valign": 2
+    },
+    "ag00U": {
+      "name": "ag00U",
+      "frames": [],
+      "loop": false,
+      "blocking": false,
+      "millis": 20,
+      "align": 1,
+      "valign": 2
+    },
+    "ag00tst": {
+      "name": "ag00tst",
+      "frames": [],
+      "loop": true,
+      "blocking": true,
+      "millis": 100,
+      "align": 1,
+      "valign": 1
+    },
+    "ag01R": {
+      "name": "ag01R",
+      "frames": [],
+      "loop": true,
+      "blocking": false,
+      "millis": 70,
+      "align": 1,
+      "valign": 2
+    },
+    "ag01L": {
+      "name": "ag01L",
+      "frames": [],
+      "loop": true,
+      "blocking": false,
+      "millis": 70,
+      "align": 1,
+      "valign": 2
+    },
+    "ag02R": {
+      "name": "ag02R",
+      "frames": [],
+      "loop": false,
+      "blocking": true,
+      "millis": 70,
+      "align": 1,
+      "valign": 1
+    },
+    "ag02L": {
+      "name": "ag02L",
+      "frames": [],
+      "loop": false,
+      "blocking": true,
+      "millis": 70,
+      "align": 1,
+      "valign": 1
+    },
+    "ag03R": {
+      "name": "ag03R",
+      "frames": [],
+      "loop": true,
+      "blocking": true,
+      "millis": 100,
+      "align": 1,
+      "valign": 2
+    },
+    "ag03L": {
+      "name": "ag03L",
+      "frames": [],
+      "loop": true,
+      "blocking": true,
+      "millis": 100,
+      "align": 1,
+      "valign": 2
+    },
+    "rob00L": {
+      "name": "rob00L",
+      "frames": [],
+      "loop": false,
+      "blocking": false,
+      "millis": 20,
+      "align": 1,
+      "valign": 2
+    },
+    "rob00R": {
+      "name": "rob00R",
+      "frames": [],
+      "loop": false,
+      "blocking": false,
+      "millis": 20,
+      "align": 1,
+      "valign": 2
+    },
+    "rob01L": {
+      "name": "rob01L",
+      "frames": [],
+      "loop": false,
+      "blocking": true,
+      "millis": 100,
+      "align": 1,
+      "valign": 2
+    },
+    "rob01R": {
+      "name": "rob01R",
+      "frames": [],
+      "loop": false,
+      "blocking": true,
+      "millis": 100,
+      "align": 1,
+      "valign": 2
+    },
+    "bl00": {
+      "name": "bl00",
+      "frames": [],
+      "loop": false,
+      "blocking": false,
+      "millis": 20,
+      "align": 1,
+      "valign": 1
+    },
+    "bl01L": {
+      "name": "bl01L",
+      "frames": [],
+      "loop": true,
+      "blocking": false,
+      "millis": 100,
+      "align": 1,
+      "valign": 1
+    },
+    "bl01R": {
+      "name": "bl01R",
+      "frames": [],
+      "loop": true,
+      "blocking": false,
+      "millis": 100,
+      "align": 1,
+      "valign": 1
+    },
+    "gl00": {
+      "name": "gl00",
+      "frames": [],
+      "loop": true,
+      "blocking": false,
+      "millis": 20,
+      "align": 1,
+      "valign": 2
+    },
+    "cur00": {
+      "name": "cur00",
+      "frames": [],
+      "loop": true,
+      "blocking": false,
+      "millis": 20,
+      "align": 1,
+      "valign": 2
+    }
+  },
+  "animList": [
+    "ag00R",
+    "ag00L",
+    "ag00U",
+    "ag01R",
+    "ag01L",
+    "ag02R",
+    "ag02L",
+    "ag03R",
+    "ag03L",
+    "rob00L",
+    "rob00R",
+    "rob01L",
+    "rob01R",
+    "ag00tst",
+    "bl00",
+    "bl01L",
+    "bl01R",
+    "gl00",
+    "cur00"
+  ],
+  "inAnimation": false,
+  "runningAnim": false,
+  "milliFrame": 0,
+  "callPlayAnim": null,
+  "callEndAnim": null,
+  "soundTime": false,
+  "moving": false,
+  "falling": false,
+  "blocked": false,
+  "dirAnim": [],
+  "idleAnim": [],
+  "extraAnim": [],
+  "_savedProps": {},
+  "snd": []
+}

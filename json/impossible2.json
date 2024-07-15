@@ -1,0 +1,607 @@
+{
+  "file": "pix/impossible2.png",
+  "frames": [
+    
+
+    {
+      "name": "rob00L/0",
+      "type": "raster",
+      "position": {
+        "x": 93,
+        "y": 9,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00L/1",
+      "type": "raster",
+      "position": {
+        "x": 147,
+        "y": 67,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00L/2",
+      "type": "raster",
+      "position": {
+        "x": 258,
+        "y": 68,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00L/3",
+      "type": "raster",
+      "position": {
+        "x": 93,
+        "y": 126,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00L/4",
+      "type": "raster",
+      "position": {
+        "x": 93,
+        "y": 66,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00L/5",
+      "type": "link",
+      "refer": "rob00L/3",
+      "sound": ""
+    },   
+
+
+    {
+      "name": "rob00R/0",
+      "type": "raster",
+      "position": {
+        "x": 427,
+        "y": 9,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00R/1",
+      "type": "raster",
+      "position": {
+        "x": 370,
+        "y": 68,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00R/2",
+      "type": "raster",
+      "position": {
+        "x": 482,
+        "y": 68,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00R/3",
+      "type": "raster",
+      "position": {
+        "x": 427,
+        "y": 126,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00R/4",
+      "type": "raster",
+      "position": {
+        "x": 315,
+        "y": 68,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob00R/5",
+      "type": "link",
+      "refer": "rob00R/3",
+      "sound": ""
+    },   
+
+
+    {
+      "name": "rob01L/0",
+      "type": "link",
+      "refer": "rob00L/0",
+      "sound": ""
+    },
+    {
+      "name": "rob01L/1",
+      "type": "raster",
+      "position": {
+        "x": 146,
+        "y": 9,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob01L/2",
+      "type": "raster",
+      "position": {
+        "x": 202,
+        "y": 9,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob01L/3",
+      "type": "raster",
+      "position": {
+        "x": 258,
+        "y": 9,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob01L/4",
+      "type": "raster",
+      "position": {
+        "x": 313,
+        "y": 9,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob01L/5",
+      "type": "raster",
+      "position": {
+        "x": 368,
+        "y": 9,
+        "w": 29,
+        "h": 43
+      },
+      "sound": ""
+    },
+    {
+      "name": "rob01L/6",
+      "type": "link",
+      "refer": "rob00R/0",
+      "sound": ""
+    },
+
+
+    {
+      "name": "rob01R/0",
+      "type": "link",
+      "refer": "rob00R/0",
+      "sound": ""
+    },
+    {
+      "name": "rob01R/1",
+      "type": "link",
+      "refer": "rob01L/5",
+      "sound": ""
+    },
+    {
+      "name": "rob01R/2",
+      "type": "link",
+      "refer": "rob01L/4",
+      "sound": ""
+    },
+    {
+      "name": "rob01R/3",
+      "type": "link",
+      "refer": "rob01L/3",
+      "sound": ""
+    },
+    {
+      "name": "rob01R/4",
+      "type": "link",
+      "refer": "rob01L/2",
+      "sound": ""
+    },  
+    {
+      "name": "rob01R/5",
+      "type": "link",
+      "refer": "rob01L/1",
+      "sound": ""
+    },
+    {
+      "name": "rob01R/6",
+      "type": "link",
+      "refer": "rob00L/0",
+      "sound": ""
+    },
+
+
+    {
+      "name": "zz00R/0",
+      "type": "raster",
+      "position": {
+        "x": 473,
+        "y": 7,
+        "w": 49,
+        "h": 17
+      },
+      "sound": "",
+      "transf": {
+        "scaleX": 2.0,
+        "scaleY": 1.0
+      }
+    },
+    {
+      "name": "zz00R/1",
+      "type": "raster",
+      "position": {
+        "x": 536,
+        "y": 9,
+        "w": 47,
+        "h": 17
+      },
+      "sound": "",
+      "transf": {
+        "scaleX": 2.0,
+        "scaleY": 1.0
+      }      
+    },
+    {
+      "name": "zz00R/2",
+      "type": "raster",
+      "position": {
+        "x": 600,
+        "y": 9,
+        "w": 49,
+        "h": 19
+      },
+      "sound": "",
+      "transf": {
+        "scaleX": 2.0,
+        "scaleY": 1.0
+      }      
+    },
+    {
+      "name": "zz00R/3",
+      "type": "raster",
+      "position": {
+        "x": 664,
+        "y": 11,
+        "w": 49,
+        "h": 19
+      },
+      "sound": "",
+      "transf": {
+        "scaleX": 2.0,
+        "scaleY": 1.0
+      }      
+    },    
+
+
+    {
+      "name": "zz01R/0",
+      "type": "scale",
+      "refer": "zz00R/0",
+      "scaleX": 2.0,
+      "scaleY": 1.0,
+      "sound": ""
+    },
+    {
+      "name": "zz01R/1",
+      "type": "scale",
+      "refer": "zz00R/1",
+      "scaleX": 2.0,
+      "scaleY": 1.0,
+      "sound": ""
+    },
+    {
+      "name": "zz01R/2",
+      "type": "scale",
+      "refer": "zz00R/2",
+      "scaleX": 2.0,
+      "scaleY": 1.0,
+      "sound": ""
+    },
+    {
+      "name": "zz01R/3",
+      "type": "scale",
+      "refer": "zz00R/3",
+      "scaleX": 2.0,
+      "scaleY": 1.0,
+      "sound": ""
+    },
+
+
+    {
+      "name": "zz01L/0",
+      "type": "flip-x",
+      "refer": "zz01R/0",
+      "sound": ""
+    },
+    {
+      "name": "zz01L/1",
+      "type": "flip-x",
+      "refer": "zz01R/1",
+      "sound": ""
+    },
+    {
+      "name": "zz01L/2",
+      "type": "flip-x",
+      "refer": "zz01R/2",
+      "sound": ""
+    },
+    {
+      "name": "zz01L/3",
+      "type": "flip-x",
+      "refer": "zz01R/3",
+      "sound": ""
+    },
+
+
+    {
+      "name": "bl00/0",
+      "type": "raster",
+      "position": {
+        "x": 11,
+        "y": 173,
+        "w": 49,
+        "h": 39
+      },
+      "sound": ""
+    },
+
+
+    {
+      "name": "bl01L/0",
+      "type": "link",
+      "refer": "bl00/0",
+      "sound": ""
+    },    
+    {
+      "name": "bl01L/1",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 5.497787143782138,
+      "sound": ""
+    },
+    {
+      "name": "bl01L/2",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 4.71238898038469,
+      "sound": ""
+    },
+    {
+      "name": "bl01L/3",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 3.9269908169872414,
+      "sound": ""
+    },
+    {
+      "name": "bl01L/4",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 3.141592653589793,
+      "sound": ""
+    },
+    {
+      "name": "bl01L/5",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 2.356194490192345,
+      "sound": ""
+    },
+    {
+      "name": "bl01L/6",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 1.5707963267948966,
+      "sound": ""
+    },
+    {
+      "name": "bl01L/7",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 0.7853981633974483,
+      "sound": ""
+    },
+
+
+    {
+      "name": "bl01R/0",
+      "type": "link",
+      "refer": "bl00/0",
+      "sound": ""
+    },        
+    {
+      "name": "bl01R/1",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 0.7853981633974483,
+      "sound": ""
+    },
+    {
+      "name": "bl01R/2",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 1.5707963267948966,
+      "sound": ""
+    },
+    {
+      "name": "bl01R/3",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 2.356194490192345,
+      "sound": ""
+    },
+    {
+      "name": "bl01R/4",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 3.141592653589793,
+      "sound": ""
+    },
+    {
+      "name": "bl01R/5",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 3.9269908169872414,
+      "sound": ""
+    },
+    {
+      "name": "bl01R/6",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 4.71238898038469,
+      "sound": ""
+    },
+    {
+      "name": "bl01R/7",
+      "type": "rotate",
+      "refer": "bl00/0",
+      "angleMode": "radians",
+      "angle": 5.497787143782138,
+      "sound": ""
+    }
+
+
+  ],
+
+  "anim": {
+
+    "rob00L": {
+      "name": "rob00L",
+      "align": 1,
+      "valign": 2,
+      "blocking": false,
+      "descr": "Robot fermo (sx)",
+      "loop": true,
+      "millis": 200
+    },
+
+    "rob00R": {
+      "name": "rob00R",
+      "align": 1,
+      "valign": 2,
+      "blocking": false,
+      "descr": "Robot fermo (dx)",
+      "loop": true,
+      "millis": 200
+    },
+
+    "rob01L": {
+      "name": "rob01L",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Robot gira da sx verso dx",
+      "loop": false,
+      "millis": 150
+    },
+
+    "rob01R": {
+      "name": "rob01R",
+      "align": 1,
+      "valign": 2,
+      "blocking": true,
+      "descr": "Robot gira da dx verso sx",
+      "loop": false,
+      "millis": 150
+    },
+
+    "zz01R": {
+      "name": "zz01R",
+      "align": 0,
+      "valign": 0,
+      "blocking": true,
+      "descr": "Fulmine elettrico (dx)",
+      "loop": true,
+      "millis": 110
+    },
+
+    "zz01L": {
+      "name": "zz01L",
+      "align": 2,
+      "valign": 0,
+      "blocking": true,
+      "descr": "Fulmine elettrico (sx)",
+      "loop": true,
+      "millis": 110
+    },
+
+    "bl00": {
+      "name": "bl00",
+      "align": 1,
+      "valign": 1,
+      "blocking": false,
+      "descr": "Palla robot",
+      "loop": false,
+      "millis": 20
+    },
+
+    "bl01L": {
+      "name": "bl01L",
+      "align": 1,
+      "valign": 1,
+      "blocking": false,
+      "descr": "Palla robot rotante (sx)",
+      "loop": true,
+      "millis": 100
+    },
+
+    "bl01R": {
+      "name": "bl01R",
+      "align": 1,
+      "valign": 1,
+      "blocking": false,
+      "descr": "Palla robot rotante (dx)",
+      "loop": true,
+      "millis": 100
+    }
+
+
+  }
+}
+
+
+
